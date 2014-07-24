@@ -1,0 +1,13 @@
+Task Management
+
+Everyone keeps their own list.
+Add new items throughout the day.
+Pull up today's tasks, order by priority
+Mark them completed when done.
+Print completed report at the end of the day
+
+Data collected:
+ * name
+ * priority (high, medium, low)
+ * date/time due
+

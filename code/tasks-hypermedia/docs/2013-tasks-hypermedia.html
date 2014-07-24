@@ -1,0 +1,1010 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.6.8" />
+<title>Tasks Service Documentation (Hypermedia)</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(2);
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Tasks Service Documentation (Hypermedia)</h1>
+<span id="author">Mike Amundsen</span><br />
+<span id="email"><code>&lt;<a href="mailto:mike@mamund.com">mike@mamund.com</a>&gt;</code></span><br />
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_overview">Overview</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This service provides a simple tasks management interface for creating and
+marking tasks complete. There is also an option to filter tasks by title.</p></div>
+<div class="sect2">
+<h3 id="_rfc2119_words">RFC2119 Words</h3>
+<div class="paragraph"><p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in <a href="http://tools.ietf.org/html/rfc2119">RFC2119</a>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_media_type_support">Media Type Support</h3>
+<div class="paragraph"><p>All server response bodies SHOULD be returned using the
+<a href="#tasks-mt">Tasks+JSON Media Type</a>. All client write request
+bodies (e.g. POST and PUT) MUST be sent using the
+<a href="#tasks-form">Form Media Type</a>. All client read requests (e.g. GET) MUST
+be sent using <a href="#tasks-query">URL Query</a> strings.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_supported_operations_and_link_relation_values">Supported Operations and Link Relation Values</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Below is the list of link relation values and the operations they perform.</p></div>
+<div class="sect2">
+<h3 id="add">Create Tasks : <code>rel="add"</code></h3>
+<div class="paragraph"><p>The <code>add</code> link relation value identifies the hypermedia control used to create
+a new task to the list. The <a href="#data-title"><code>title</code></a> data element SHOULD be included as an
+argument for the <code>add</code> hypermedia control.</p></div>
+<div class="listingblock">
+<div class="title"><code>rel="add"</code></div>
+<div class="content">
+<pre><code> {"rel" : "add", "href" : "...", "title" : "..."}</code></pre>
+</div></div>
+<div class="paragraph"><p>Clients MUST use the <code>POST</code> method when activating this hypermedia control and
+MUST use the <a href="#task-form">Form Media Type</a> when formating the payload.
+Servers SHOULD return an HTTP status code of 204 upon successful completion of
+the request.</p></div>
+<div class="paragraph"><p>If an error occurs while attempting this request, the server SHOULD return a
+<a href="#tasks-mt">Task+JSON</a> that contains the <a href="#data-error"><code>error</code></a> data element along with the
+appropriate HTTP status code.</p></div>
+</div>
+<div class="sect2">
+<h3 id="complete">Mark a Task Completed : <code>rel="complete"</code></h3>
+<div class="paragraph"><p>the <code>complete</code> link relation value identifies the hypermedia control used to
+mark a single task as completed. The <a href="#data-id"><code>id</code></a> data element SHOULD be
+included as an argument for the <code>complete</code> hypermedia control.</p></div>
+<div class="listingblock">
+<div class="title"><code>rel="complete"</code></div>
+<div class="content">
+<pre><code> {"rel" : "complete", "href" : "...", "id" : "..."}</code></pre>
+</div></div>
+<div class="paragraph"><p>Clients MUST use the <code>POST</code> method when activating this hypermedia control and
+MUST use the <a href="#task-form">Form Media Type</a> when formating the payload.
+Servers SHOULD return an HTTP status code of 204 upon successful completion of
+the request.</p></div>
+<div class="paragraph"><p>If an error occurs while attempting this request, the server SHOULD return a
+<a href="#tasks-mt">Task+JSON</a> that contains the <a href="#data-error"><code>error</code></a> data element along with the
+appropriate HTTP status code.</p></div>
+</div>
+<div class="sect2">
+<h3 id="collection">List of Tasks : <code>rel="collection"</code></h3>
+<div class="paragraph"><p>The <code>collection</code> link relation value identifies the hypermedia control used to
+retrieve a list of all the tasks. There are no data elements for this hypermedia
+control. Below is an example:</p></div>
+<div class="listingblock">
+<div class="title"><code>rel="collection"</code></div>
+<div class="content">
+<pre><code> {"rel" : "collection", "href" : "..."}</code></pre>
+</div></div>
+<div class="paragraph"><p>Clients MUST use the <code>GET</code> method when activating this hypermedia control.
+Servers SHOULD return an HTTP status code of 200 upon successful completion of
+the request along with a <a href="#tasks-mt">Tasks+JSON</a> media type response showing
+a list of tasks.</p></div>
+<div class="paragraph"><p>If an error occurs while attempting this request, the server SHOULD return a
+<a href="#tasks-mt">Task+JSON</a> that contains the <a href="#data-error"><code>error</code></a> data element along with the
+appropriate HTTP status code.</p></div>
+</div>
+<div class="sect2">
+<h3 id="search">Filtered List of Tasks : <code>rel="search"</code></h3>
+<div class="paragraph"><p>The <code>search</code> link relation value identifies the hypermedia control used to
+retrieve a filtered list of tasks. The <a href="#data-title"><code>title</code></a> data element
+SHOULD be included as an argument for the <code>search</code> hypermedia control.
+Below is an example:</p></div>
+<div class="listingblock">
+<div class="title"><code>rel="search"</code></div>
+<div class="content">
+<pre><code> {"rel" : "search", "href" : "...", "title" : "..."}</code></pre>
+</div></div>
+<div class="paragraph"><p>Clients MUST use the <code>GET</code> method when activating this hypermedia control and
+MUST use a <a href="#tasks-query">URL Query</a> string when sending data elements to the server.
+Servers SHOULD return an HTTP status code of 200 upon successful completion of
+the request along with a <a href="#tasks-mt">Tasks+JSON</a> media type response showing
+a list of tasks.</p></div>
+<div class="paragraph"><p>If an error occurs while attempting this request, the server SHOULD return a
+<a href="#tasks-mt">Task+JSON</a> that contains the <a href="#data-error"><code>error</code></a> data element along with the
+appropriate HTTP status code.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_data_elements">Data Elements</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>the following data elements are used in the Task Service. All server and client
+applications should be ready to handle these data elements for display and processing.</p></div>
+<div class="dlist" id="data-title"><dl>
+<dt class="hdlist1">
+title
+</dt>
+<dd>
+<p>
+   The <code>title</code> data element is a string representing the task title. This value is
+supplied by the client when attempting to create a new task.
+</p>
+</dd>
+<dt class="hdlist1">
+id
+</dt>
+<dd>
+<p>
+   The <code>id</code> data element is a string representing the unique identifier for the task.
+This value is generated by the server when creating a new task.
+</p>
+</dd>
+<dt class="hdlist1">
+error
+</dt>
+<dd>
+<p>
+   The <code>error</code> data element is a string representing a description of an error that
+occured during a client request. Note that this string is not the HTTP status code or
+HTTP status string (e.g. "400 Not Found"). Instead, this is a value unique to the
+Tasks service (e.g. "Invalid Task ID. Please try again").
+</p>
+</dd>
+</dl></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="data-error">Media Types and Query Strings</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Below is a list of payloads and query strings that can be sent from the client
+to the server along with a list of the common server responses.</p></div>
+<div class="sect2">
+<h3 id="tasks-mt">Task+JSON Media type : <code>application/tasks+json</code></h3>
+<div class="paragraph"><p>All server responses SHOULD be formatted in the Task+JSON media type. Below is a
+description of this media type. Note that this media type is not yet registered with
+the IANA.</p></div>
+<div class="paragraph"><p>Below is a &#8216;map&#8217; of the Tasks+JSON media type.</p></div>
+<div class="listingblock">
+<div class="title">Tasks+JSON Media Type</div>
+<div class="content">
+<pre><code>{
+  "tasks" : {
+
+    "links" : [
+      {"rel" : "collection", "href" : "..."},
+      {"rel" : "search", "href" : "...", "title" : "..."},
+      {"rel" : "add", "href" : "...", "title" : "..."}
+    ],
+
+    "collection" : [
+      {"id" : "...",
+       "title" : "...",
+       "link" : {"rel" : "complete", "href" : "...", "id" : "...}
+      },
+      ...
+    ],
+
+    "error" : "..."
+  }
+}</code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="tasks-form">Form Media type : <code>application/x-www-forms-urlencoded</code></h3>
+<div class="paragraph"><p>The <a href="http://tools.ietf.org/search/rfc1866#section-8.2.1">Form Media Type</a> (as
+described in RFC1866) is used to send updates from the client to the server.
+Essentially, this means clients create payloads using a name/value pair approach.</p></div>
+<div class="paragraph"><p>For example, if the hypermedia control indicates an argument named <code>title</code> can be
+sent to the server, the client can format a payload that looks like the following:</p></div>
+<div class="listingblock">
+<div class="title">Form Media Type Payload</div>
+<div class="content">
+<pre><code>title=this%20is%20a%20new%20task</code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="tasks-query">URL Query Strings</h3>
+<div class="paragraph"><p>The <a href="http://tools.ietf.org/html/rfc3986#section-3">URI Query</a> (as described in
+RFC3986, is used to send read-only queries from the client to the server. Essentially,
+this means clients create URL query strings using a name/value pair approach.</p></div>
+<div class="paragraph"><p>For example, if the hypermedia cxontrol indicates an argument named <code>title</code> can be
+sent to the server, the clienht can format a query URL that looks like the following:</p></div>
+<div class="listingblock">
+<div class="title">URL Query String</div>
+<div class="content">
+<pre><code>http://example.org/tasks/?title=this+is+a+test</code></pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_extensibility">Extensibility</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This document describes the Tasks Hypermedia service. Any extensions to this service
+MUST not redefine or change the use/meaning of any link relations, vocabulary names,
+or any elements of the <code>application/tasks+json</code> media type as defined in this document.
+Clients that do not recognize extensions to the service SHOULD ignore them.</p></div>
+<div class="paragraph"><p>The details of designing and implementing extensions is beyond the scope of
+this document.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">It is possible that future forward-compatible modifications to this
+specification will include new link relations, objects, arrays, properties, etc. Extension
+designers should take care to prevent future modifications from breaking or
+redefining those modifications.</td>
+</tr></table>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2013-12-17 09:53:09 Eastern Standard Time
+</div>
+</div>
+</body>
+</html>

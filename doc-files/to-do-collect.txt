@@ -1,0 +1,12 @@
+To Do List
+==========
+
+We keep track of:
+- Action (Finish Q3 Summary, Call Barb in Accounting, etc.)
+- Due Date
+- Category (Sales, Marketing, Operations, etc.)
+
+We share a single list with the team.
+We add items throughout the day
+We sort by Due Date to figure out what to do next
+We remove them from the list when they are completed

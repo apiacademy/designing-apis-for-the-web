@@ -1,0 +1,138 @@
+= Task Service Domain Notes
+
+_Collected/summarized notes on the proposed Task Service._
+
+[[summary]]
+== Summary
+This document outlines the data elements and actions that represent the way we use various 
+Task lists in the company. 
+
+== Marketing
+Marketing has a shared list with categories and removes items when they are completed.
+
+.Data
+[grid="rows",format="csv"]
+[options="header",cols="<,<"]
+|===========================
+Data,Description
++<<Title>>+, Thing to do
++<<DateTimeDue>>+, Date string
++<<Category>>+, Sales Marketing Accounting etc. 
+|===========================
+
+.Actions
+[grid="rows",format="csv"]
+[options="header",cols="<,<"]
+|===========================
+Action,Data Elements
++<<ViewList>>+, NONE
++<<FilterList>>+, title fragment
++<<Create>>+, title
++<<Remove>>+, title
+|===========================
+
+=== Sales
+In sales everyone keeps their own list with priorities. 
+They mark them completed and produce reports
+at the end of the day.
+
+.Data
+[grid="rows",format="csv"]
+[options="header",cols="<,<"]
+|===========================
+Data,Description
++<<Title>>+, Thing to do
++<<DateTimeDue>>+, Date/Time string
++<<Priority>>+, High Medium Low 
+|===========================
+
+.Actions
+[grid="rows",format="csv"]
+[options="header",cols="<,<"]
+|===========================
+Action,Data Elements
++<<ViewList>>+, NONE
++<<FilterByPriority>>+, Priority value
++<<Create>>+, Name Priority DateTimeDue
++<<MarkCompleted>>+, Name
++<<Report>>+, Output all completed today.
+|===========================
+
+=== Operations
+The Operations team has a single, shared list (Punch List) of all the work that is scheduled for the
+weekly roll-outs. Only one person has access to editing the list and there is a process
+for getting things approved to adds & removes.
+
+.Data
+[grid="rows",format="csv"]
+[options="header",cols="<,<"]
+|===========================
+Data,Description
++<<Title>>+, Thing to do
++<<Description>>+, Brief explanation
++<<AffectedPart>>+, What will be altered/updated
++<<ExecutionOrder>>+, Order in which this is done 
+|===========================
+
+.Actions
+[grid="rows",format="csv"]
+[options="header",cols="<,<"]
+|===========================
+Action,Data Elements
++<<ViewList>>+, NONE (always in order)
++<<AddToList>>+, Title Description AffectedPart ExecutionOrder
++<<Remove>>+, Title
+|===========================
+
+== Shared Vocabulary
+Below is the list of shared vocabulary names for the Task Service.
+
+.Shared Vocabulary
+[grid="rows",format="csv"]
+[options="header",cols="<,<"]
+|===========================
+Data,Description
++<<Title>>+, Thing to do
++<<Description>>+, Brief explanation
++<<Category>>+, Sales Marketing Accounting
++<<Priority>>+, High Medium Low
++<<DateTimeDue>>+, Date/Time string
++<<AffectedPart>>+, What will be altered/updated
++<<ExecutionOrder>>+, Order in which this is done
+|===========================
+
+== Shared Vocabulary with Tags
+Below is the list of shared vocabulary names for the Task Service with association tags.
+
+.Shared Vocabulary
+[grid="rows",format="csv"]
+[options="header",cols="<,<,<"]
+|===========================
+Data,Description,Tag
++<<Title>>+, Thing to do, <<Marketing>> <<Sales>> <<Operations>>
++<<Description>>+, Brief explanation, <<Operations>>
++<<Category>>+, Sales Marketing Accounting, <<Marketing>>
++<<Priority>>+, High Medium Low, <<Sales>>
++<<DateTimeDue>>+, Date/Time string, <<Marketing>> <<Sales>>
++<<AffectedPart>>+, What will be altered/updated, <<Operations>>
++<<ExecutionOrder>>+, Order in which this is done, <<Operations>>
+|===========================
+
+== Task Service Actions with Tags
+Below is a list of all the actions currently defined for the Task Service with association Tags.
+
+.Defined Actions
+[grid="rows",format="csv"]
+[options="header",cols="<,<,<"]
+|===========================
+Action, Data Elements, Tag
++<<ViewList>>+, NONE, <<Marketing>> <<Sales>> <<Operations>>
++<<FilterListByTitle>>+, Title-Fragment, <<Marketing>>
++<<FilterListByPriority>>+, Priority, <<Sales>>
++<<Add>>+, Title Description Priority DateTimeDue AffectedPart ExecutionOrder, <<Marketing>> <<Sales>> <<Operations>>
++<<Remove>>+, Title, <<Marketing>> <<Sales>> <<Operations>>
++<<MarkCompleted>>+, Title, <<Sales>>
++<<ReportCompletedToday>>+, DateTime, <<Sales>>
+|===========================
+
+
